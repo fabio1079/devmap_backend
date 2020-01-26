@@ -1,10 +1,15 @@
 import * as express from "express";
 import * as morgan from "morgan";
 import * as cors from "cors";
+import * as mongoose from "mongoose";
 
-import { LOG_LEVEL, PORT } from "./utils/config";
-
+import { LOG_LEVEL, PORT, MONGO_CONNECTION } from "./utils/config";
 import routes from "./routes";
+
+mongoose.connect(MONGO_CONNECTION, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 const app = express();
 

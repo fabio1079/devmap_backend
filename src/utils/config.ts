@@ -16,5 +16,12 @@ switch (process.env.NODE_ENV) {
 
 dotenv.config({ path: path });
 
+const DB_LINK = process.env.DB_LINK || "";
+const DB_NAME = process.env.DB_NAME || "";
+
+const CON_LINK =
+  `mongodb+srv://${DB_LINK}/${DB_NAME}?retryWrites=true&w=majority`;
+
 export const PORT = process.env.PORT;
 export const LOG_LEVEL = process.env.LOG_LEVEL || "dev";
+export const MONGO_CONNECTION = CON_LINK;
