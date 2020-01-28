@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import axios from "axios";
+import axios from "../utils/axios";
 
 import DevModel from "../models/DevModel";
 import { PointType } from "../models/PointSchema";
@@ -9,7 +9,7 @@ const DevController = {
   async index(request: Request, response: Response) {
     const devs = await DevModel.find();
 
-    response.json({ devs });
+    return response.json({ devs });
   },
 
   async store(req: Request, res: Response) {

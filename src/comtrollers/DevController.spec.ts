@@ -40,4 +40,23 @@ describe("DevController", () => {
     expect(response.status).toBe(200);
     expect(response.body).not.toEqual({ desv: [] });
   });
+
+  it("creates devs on POST /devs", async () => {
+    let response = await request(app)
+      .post("/devs")
+      .send({
+        github_username: "test",
+        techs: "ReactJS, React Native, Nodejs, Express",
+        latitude: 56.5642581,
+        longitude: -78.4903776
+      });
+
+    expect(response.status).toBe(200);
+    expect(response.body).toMatchObject({
+      techs: ["ReactJS", "React Native", "Nodejs", "Express"],
+      github_username: "test",
+      bio: "testbio",
+      name: "testname"
+    });
+  });
 });
