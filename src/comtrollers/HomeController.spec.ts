@@ -1,4 +1,6 @@
-import { app, request } from "../testutils";
+import { app } from "../index";
+import * as request from "supertest";
+
 
 describe("HomeController", () => {
   it("should get hello on /", async () => {

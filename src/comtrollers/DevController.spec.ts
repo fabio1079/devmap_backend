@@ -1,11 +1,11 @@
+import { app } from "../index";
+import * as request from "supertest";
 import {
-  app,
   mongooseTestConnect,
-  mongooseTestDisconnect,
-  request
-} from "../testutils";
+  mongooseTestDisconnect
+} from "../utils/mongotest";
 
-import DevModel from "../../src/models/DevModel";
+import DevModel from "../models/DevModel";
 
 describe("DevController", () => {
   beforeAll(async () => {
@@ -13,6 +13,7 @@ describe("DevController", () => {
   });
 
   afterAll(async () => {
+    await DevModel.deleteMany({});
     await mongooseTestDisconnect();
   });
 
