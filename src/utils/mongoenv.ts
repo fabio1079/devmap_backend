@@ -1,5 +1,3 @@
-import { MongoMemoryServer } from "mongodb-memory-server";
-
 const mongoDevUri = () => {
   const DB_LINK = process.env.DB_LINK;
   const DB_NAME = process.env.DB_NAME;

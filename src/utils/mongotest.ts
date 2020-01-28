@@ -1,15 +1,9 @@
 import * as mongoose from "mongoose";
-import { MongoMemoryServer } from "mongodb-memory-server";
-
-const mongod = new MongoMemoryServer({
-  debug: false
-});
 
 export const mongooseTestConnect = async () => {
-  await mongod.start();
-  const URI = await mongod.getUri();
+  const URI = process.env.MONGO_URL || "";
 
-  mongoose.connect(URI, {
+  await mongoose.connect(URI, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -18,5 +12,4 @@ export const mongooseTestConnect = async () => {
 
 export const mongooseTestDisconnect = async () => {
   await mongoose.disconnect();
-  await mongod.stop();
 }
