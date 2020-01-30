@@ -1,6 +1,14 @@
 import * as mongoose from "mongoose";
 
-import PointSchema from "./PointSchema";
+import PointSchema, { PointType } from "./PointSchema";
+
+export interface IDev extends mongoose.Document {
+  name: string;
+  github_username: string;
+  bio: string;
+  techs: string[];
+  location: PointType;
+}
 
 export const DevSchema = new mongoose.Schema({
   name: String,
@@ -13,4 +21,6 @@ export const DevSchema = new mongoose.Schema({
   }
 });
 
-export default mongoose.model('Dev', DevSchema);
+const DevModel = mongoose.model<IDev>("Dev", DevSchema);
+
+export default DevModel;
